@@ -1,3 +1,5 @@
+#Aufgabe1
+
 tibetan = read.table(file="http://www2.informatik.hu-berlin.de/~koessler/SAS_Kurs/Kursdaten/tibetan.dat",
                       col.names=c("maxlength","maxwidth", "height", "upface", "facewidth"),
                       colClasses=c("numeric","numeric","numeric","numeric","numeric"));
@@ -10,7 +12,7 @@ darwin = read.table(file="http://www2.informatik.hu-berlin.de/~koessler/SAS_Kurs
 ttest = read.table(file="http://www2.informatik.hu-berlin.de/~koessler/SAS_Kurs/Kursdaten/ttest.dat",
                       col.names=c("nr","a", "b", "ba"),
                       colClasses=c("integer","numeric","numeric","numeric"),nrows=10);
-ttest[]
+
 ttest_stat = read.table(file="http://www2.informatik.hu-berlin.de/~koessler/SAS_Kurs/Kursdaten/ttest.dat",
                         col.names=c("nr","a", "b", "ba"),
                         colClasses=c("integer","numeric","numeric","numeric"),nrows=10);
@@ -49,7 +51,50 @@ heroin2 = read.table(file="http://www2.informatik.hu-berlin.de/~koessler/SAS_Kur
                      colClasses=c("integer","integer","integer","integer","integer","integer"));
 heroin2 = heroin2[,7:12]
 heroin = rbind(heroin1,heroin2)
+
+
 save(banknote,file="D:/olli/workspace/R_Stuff/banknote.Rda")
-load.Rdata(file="D:/olli/workspace/R_Stuff/banknote.Rda",objname="dat.s3")
+
+
+
+
+#Aufgabe2
+
+vectorlength <- function(vec){
+  
+  return(sqrt(sum(vec^2)))
+}
+
+
+
+#Aufgabe3
+
+x<-c(-1,2,-1,3,4,-8)
+y<-c(5,0,3,-2,-8,-1)
+q<-x/y
+quadrant<-c(0,0,0,0,0,0)
+
+for (i in 1:length(x)){
+  
+    if (x[i]>0 & y[i]>0){
+      quadrant[i]=1;
+    }
+  else if(x[i]<0 & y[i]>0){
+    quadrant[i]=2;
+  }
+  else if(x[i]<0 & y[i]<0){
+    quadrant[i]=3;
+  }
+  else if(x[i]>0 & y[i]<0){
+    quadrant[i]=4;
+  }
+  else{
+    quadrant[i]="NA";
+  }
+  
+}
+
+dataframe <- data.frame(x,y,q,quadrant)
+colnames(dataframe) <- c("x","y","x/y","Quadrant")
 
 
