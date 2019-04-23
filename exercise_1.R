@@ -1,3 +1,12 @@
+
+#Aufgabenblatt1 "Werkzeuge der empirischen Forschung"
+
+
+# Oliver Pohl, 577878, pohloliq
+
+
+
+
 #Aufgabe1
 
 tibetan = read.table(file="http://www2.informatik.hu-berlin.de/~koessler/SAS_Kurs/Kursdaten/tibetan.dat",
@@ -14,8 +23,8 @@ ttest = read.table(file="http://www2.informatik.hu-berlin.de/~koessler/SAS_Kurs/
                       colClasses=c("integer","numeric","numeric","numeric"),nrows=10);
 
 ttest_stat = read.table(file="http://www2.informatik.hu-berlin.de/~koessler/SAS_Kurs/Kursdaten/ttest.dat",
-                        col.names=c("nr","a", "b", "ba"),
-                        colClasses=c("integer","numeric","numeric","numeric"),nrows=10);
+                        col.names=c("a", "b", "ba"),
+                        colClasses=c("numeric","numeric","numeric"),skip=10,nrows=2);
 banknote = read.table(file="http://www2.informatik.hu-berlin.de/~koessler/SAS_Kurs/Kursdaten/banknote.dat",
                       col.names=c("nummer","laenge", "links", "rechts", "unten", "oben", "diagonal"),
                       colClasses=c("integer","numeric","numeric","numeric","numeric","numeric","numeric"));
@@ -51,7 +60,7 @@ heroin2 = read.table(file="http://www2.informatik.hu-berlin.de/~koessler/SAS_Kur
                      colClasses=c("integer","integer","integer","integer","integer","integer"));
 heroin2 = heroin2[,7:12]
 heroin = rbind(heroin1,heroin2)
-
+rm(heroin1,heroin2,water1,water2,water3,water4,water_lastrow)
 
 save(banknote,file="D:/olli/workspace/R_Stuff/banknote.Rda")
 
@@ -96,5 +105,5 @@ for (i in 1:length(x)){
 
 dataframe <- data.frame(x,y,q,quadrant)
 colnames(dataframe) <- c("x","y","x/y","Quadrant")
-
+dataframe <- dataframe[order(dataframe$Quadrant),]
 
