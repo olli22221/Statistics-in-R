@@ -1,0 +1,93 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows, fit}
+\usepackage{marginnote}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{amsmath, tabu}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\geometry{
+	headsep=0.5cm,
+	headheight=2.5cm,
+	marginparwidth=2cm,
+	textheight=22cm,
+}
+\setlength{\headheight}{120pt}
+\usepackage{fancyhdr}
+\setlength\parindent{0pt}
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\arraystretch}{1.2}
+\allowdisplaybreaks
+\graphicspath{{../figures/}}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\lhead{
+	\textit{Humboldt-Universität zu Berlin, Institut der Informatik}\\
+	\bigskip
+	\textbf{\Large{Werkzeuge der empirischen Forschung}}\\
+	\bigskip
+	Abgabe: 29.04.2019\\
+	Blatt 2\\[-1em]\\
+	Pohl, Oliver \\	 577878\\  pohloliq\\[-1em]
+}
+
+\newcommand*{\QED}{\hfill\ensuremath{q.e.d.}}
+\newcommand{\ex}[1]{\newpage\subsubsection*{Aufgabe #1.}}
+\newcommand*{\simpleTable}[2]{
+	\begin{tabular}{@{} #1 @{}}
+		\toprule
+		#2
+		\bottomrule
+	\end{tabular}
+}
+\DeclareMathOperator{\sig}{sig}
+
+\newcommand\addvmargin[1]{
+  \node[fit=(current bounding box),inner ysep=#1,inner xsep=0]{};
+}
+
+\begin{document}
+	%%%%%%%%%%%%%%%%%%%% Aufgabe 5b %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\ex{5b}
+
+	P($X > 6$), wenn  X~Bi(10,5/6)\\
+	\begin{align*}
+	P(X > 6) &=1- P(X <= 6)\\
+			 &= 1- \sum_{i=0}^{6} \binom{10}{i} \cdot \frac{5}{6}^{i} \cdot (1-5/6)^{10-i}\\
+			 &= 1- 0.06972784\\
+			 &= 0.9302722\\
+	\end{align*}
+	
+	P($X > 6$), wenn  X~Poi(50/6)\\
+	\begin{align*}
+	P(X > 6) &=1- P(X <= 6)\\
+	&= 1- \sum_{i=0}^{6} \frac{\frac{50}{6}^{i}}{i!} \cdot \exp^{-\frac{50}{6}} \\
+	&= 1- 0.2743767 \\
+	&= 0.7256233\\
+	\end{align*}
+	
+	P($X > 6$), wenn  X~Geo(5/6)\\
+	\begin{align*}
+	P(X > 6) &=1- P(X <= 6)\\
+	&= 1- \sum_{i=1}^{6} \frac{5}{6} \cdot (1-\frac{5}{6})^{i-1}\\ 
+	&= 1- 0.9999964 \\
+	&= 0.00000359999\\
+	\end{align*}
+	
+	P($X > 6$), wenn  X~N(6,9)\\
+	\begin{align*}
+	P(X > 6) &=1- P(X <= 6)\\
+	&= 1- \sum_{i=- \inf}^{6} \frac{1}{\sqrt{2 \cdot \pi \cdot 9}} \cdot \exp^{-\frac{(i-6)^{2}}{2 \cdot 9}}  \\
+	&= 1- 0.5 \\
+	&= 0.5\\
+	\end{align*}
+	
+
+\end{document}
