@@ -13,10 +13,12 @@ save(tibetan,file = "C:\\Users\\olli\\Documents\\GitHub\\Statistics-in-R\\ex2\\t
 
 tibetanA <- subset(tibetan, Typ=="A")
 tibetanB <- subset(tibetan, Typ=="B")
-a<-tibetanA
-b<-capture.output(a)
-c<-paste(b)
-cat(c )
+print("----------TibetanA---------")
+print(tibetanA)
+print("----------TibetanB---------")
+print(tibetanB)
+print("----------Tibetan---------")
+print(tibetan)
 
 
 #c)
