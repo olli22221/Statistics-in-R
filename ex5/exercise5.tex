@@ -1,0 +1,148 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows, fit}
+\usepackage{marginnote}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{amsmath, tabu}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\usepackage{mathtools}
+\geometry{
+	headsep=0.5cm,
+	headheight=2.5cm,
+	marginparwidth=2cm,
+	textheight=22cm,
+}
+\setlength{\headheight}{120pt}
+\usepackage{fancyhdr}
+\setlength\parindent{0pt}
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\arraystretch}{1.2}
+\allowdisplaybreaks
+\graphicspath{{../figures/}}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\lhead{
+	\textit{Humboldt-Universität zu Berlin, Institut der Informatik}\\
+	\bigskip
+	\textbf{\Large{Werkzeuge der empirischen Forschung}}\\
+	\bigskip
+	Abgabe: 20.05.2019\\
+	Blatt 5\\[-1em]\\
+	Pohl, Oliver \\	 577878\\  pohloliq\\[-1em]
+}
+
+\newcommand*{\QED}{\hfill\ensuremath{q.e.d.}}
+\newcommand{\ex}[1]{\newpage\subsubsection*{Aufgabe #1.}}
+\newcommand*{\simpleTable}[2]{
+	\begin{tabular}{@{} #1 @{}}
+		\toprule
+		#2
+		\bottomrule
+	\end{tabular}
+}
+\DeclareMathOperator{\sig}{sig}
+
+\newcommand\addvmargin[1]{
+  \node[fit=(current bounding box),inner ysep=#1,inner xsep=0]{};
+}
+
+\begin{document}
+	%%%%%%%%%%%%%%%%%%%% Aufgabe 11b1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\ex{11b1}
+
+	Berechnung der getrimmten und winsorisierten Mittel auf folgenden fiktiven Daten(1.5,2.7,2.8,3.0,3.1)\\\\
+	
+	
+	
+	
+	\={X}_{win,1} = \frac{2 \cdot 2.7 + 2.8 + 2 \cdot 3.0}{5} = 2.84 \\\\
+	
+	\={X}_{trim,1} = \frac{2.7 + 2.8 + 3.0}{3} = 2.833
+	
+	
+	
+
+    
+    
+    
+    	%%%%%%%%%%%%%%%%%%%% Aufgabe 11b2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \ex{11b2}
+    
+    Berechnung der empirischen Streuung s^2:\\
+    
+    \={X} = 0.2 $\cdot$ (1.5 + 2.7 + 2.8 + 3.0 + 3.1)   = 2.62 \\
+    
+    \begin{align*}
+    s^2  
+    &=\frac{(1.5-2.62)^2 + (2.7-2.62)^2 + (2.8-2.62)^2 + (3.0-2.62)^2 + (3.1-2.62)^2}{4}\\
+    &= \frac{1.254 + 0.0064 + 0.0324 + 0.1444 + 0.2304}{4}\\
+    &= \frac{1.66}{4} = 0.415\\
+    \end{align*}
+    
+    Berechnung des Interquartilrange IR :\\
+    
+    X_{0.25} = 2.7\\
+    X_{0.75} = 3.0\\
+    IR = X_{0.75} - X_{0.25} = 3.0 - 2.7 = 0.3\\\\
+    
+    Berechnung des MAD\\
+    \begin{align*}
+    med(|x_{i}-x_{0.5}|)
+    &= med(|1.5-2.8|,|2.7-2.8|,|2.8-2.8|,|3.0-2.8|,|3.1-2.8|)\\
+    &= med(|-1.3|,|-0.1|,|0|,|0.2|,|0.3|)\\
+    &= med(1.3,0.1,0,0.2,0.3)\\
+    &= 0.2\\
+    \end{align*}
+   
+    Berechnung Ginis Mittelwertdifferenz:\\
+    
+   
+    $\frac{1}{\binom{5}{2}}$ $\cdot$ \sum_{i<j}^{} |x_{i}-x_{j}|\\
+   
+    $\frac{1}{\binom{5}{2}}$ $\cdot$ ($|1.5-2.7|$+$|1.5-2.8|$+$|1.5-3.0|$+$|1.5-3.1|$+$|2.7-2.8|$+$|2.7-3.0|$+$|2.7-3.1|$
+    +$|2.8-3.0|$+$|2.8-3.1|$+$|3.0-3.1|$)=\\
+    $\frac{1}{\binom{5}{2}}$ $\cdot$ (1.2 + 1.3 + 1.5 + 1.6 + 0.1 + 0.3 + 0.4 + 0.2 + 0.3 + 0.1)=\\
+     $\frac{1}{10}$ $\cdot$ (6.8) = 0.68
+     \\\\
+     \newpage
+     Berechnung des S_{n}:\\
+     
+     S_{n}=1.1926 $\cdot$ med_{i}(med_{j}(|(x_{i}-x_{j})|)) \\\\
+     
+     i = 1\;  1.2 , 1.3 , 1.5 , 1.6  med(1.2 , 1.3 , 1.5 , 1.6) = 1.4\\
+     i = 2\;  1.2 , 0.1 , 0.3 , 0.4  med(1.2 , 0.1 , 0.3 , 0.4) = 0.35\\
+     i = 3\;  1.3 , 0.1 , 0.2 , 0.3  med(1.3 , 0.1 , 0.2 , 0.3) = 0.25\\
+     i = 4\;  1.5 , 0.3 , 0.2 , 0.1  med(1.5 , 0.3 , 0.2 , 0.1) = 0.25\\
+     i = 5\;  1.6 , 0.4 , 0.3 , 0.1  med(1.6 , 0.4 , 0.3 , 0.1) = 0.35\\\\
+     
+     med(1.4,0.35,0.25,0.25,0.35) = 0.35\\
+     S_{n} = 1.1926 $\cdot$ 0.35 = 0.417 \\\\
+     S_{n} (ohne Korrekturfaktor) = 0.35\\
+     
+     Berechnung des Q_{n}:\\
+    
+    Q_{n} = \{|x_{i}-x_{j}| \; , i<j\}
+    
+    i = 1\;  1.2 , 1.3 , 1.5 , 1.6\\
+    i = 2\;  0.1 , 0.3 , 0.4 \\
+    i = 3\;  0.2 , 0.3\\
+    i = 4\;  0.1\\
+    
+    \{0.1 , 0.1 , 0.2 , 0.3 , 0.3 , 0.4 , 1.2 , 1.3 , 1.5 , 1.6\}
+    
+    h =  \left$\lfloor$ $\frac{5}{2}$ \right$\rfloor$ + 1 = 3 \\
+    k = $\binom{3}{2}$ = 3\\\\
+    
+    Somit ist der Q_{n} = 0.2
+    
+	
+
+\end{document}

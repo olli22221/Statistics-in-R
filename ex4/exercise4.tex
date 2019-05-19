@@ -1,0 +1,78 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows, fit}
+\usepackage{marginnote}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{amsmath, tabu}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\geometry{
+	headsep=0.5cm,
+	headheight=2.5cm,
+	marginparwidth=2cm,
+	textheight=22cm,
+}
+\setlength{\headheight}{120pt}
+\usepackage{fancyhdr}
+\setlength\parindent{0pt}
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\arraystretch}{1.2}
+\allowdisplaybreaks
+\graphicspath{{../figures/}}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\lhead{
+	\textit{Humboldt-Universität zu Berlin, Institut der Informatik}\\
+	\bigskip
+	\textbf{\Large{Werkzeuge der empirischen Forschung}}\\
+	\bigskip
+	Abgabe: 13.05.2019\\
+	Blatt 4\\[-1em]\\
+	Pohl, Oliver \\	 577878\\  pohloliq\\[-1em]
+}
+
+\newcommand*{\QED}{\hfill\ensuremath{q.e.d.}}
+\newcommand{\ex}[1]{\newpage\subsubsection*{Aufgabe #1.}}
+\newcommand*{\simpleTable}[2]{
+	\begin{tabular}{@{} #1 @{}}
+		\toprule
+		#2
+		\bottomrule
+	\end{tabular}
+}
+\DeclareMathOperator{\sig}{sig}
+
+\newcommand\addvmargin[1]{
+  \node[fit=(current bounding box),inner ysep=#1,inner xsep=0]{};
+}
+
+\begin{document}
+	%%%%%%%%%%%%%%%%%%%% Aufgabe 10a %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\ex{10a}
+
+	Herleitung der Maximum-Likelihood-Schätzung für $\lambda$ \\\\
+	
+	
+	\begin{align*}
+	L(\lambda) = \prod_{i=1}^{n} \exp^{-\lambda \cdot \frac{\lambda^{X_i}}{X_i!}}
+	\Leftrightarrow ln(L(\lambda)) = &\sum_{i=1}^{n} ln(\exp^{-\lambda \cdot \frac{\lambda^{X_i}}{X_i!}})\\
+	&= \sum_{i=1}^{n} (-\lambda + X_i \cdot ln(\lambda) - ln(X_i!))\\
+	&= -n \cdot \lambda + ln(\lambda) \cdot \sum_{i=1}^{n} X_i - \sum_{i=1}^{n} ln(X_i!) \Leftrightarrow ln(L(\lambda)) \frac{d}{d\lambda} = -n + \frac{1}{\lambda} \cdot \sum_{i=1}^{n} X_1\\
+	& = -n + \frac{1}{\lambda} \cdot \sum_{i=1}^{n} X_1 = 0 \Rightarrow \frac{1}{n} \cdot \sum_{1}^{n} X_i = \lambda_{maximumlikelihood}
+	\end{align*}
+	
+	Herleitung der Momenten-Schätzung für $\lambda$ \\\\
+	\begin{align*}
+	Seien X_1, ... , X_n ~ Poi(\lambda)\\
+	\lambda = E(X_i) \Rightarrow \lambda = \stackrel{-}{X}
+    \end{align*}
+	
+
+\end{document}
