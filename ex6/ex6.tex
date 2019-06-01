@@ -1,0 +1,334 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows, fit}
+\usepackage{marginnote}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{amsmath, tabu}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\usepackage{mathtools}
+\geometry{
+	headsep=0.5cm,
+	headheight=2.5cm,
+	marginparwidth=2cm,
+	textheight=22cm,
+}
+\setlength{\headheight}{120pt}
+\usepackage{fancyhdr}
+\setlength\parindent{0pt}
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\arraystretch}{1.2}
+\allowdisplaybreaks
+\graphicspath{{../figures/}}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\lhead{
+	\textit{Humboldt-Universität zu Berlin, Institut der Informatik}\\
+	\bigskip
+	\textbf{\Large{Werkzeuge der empirischen Forschung}}\\
+	\bigskip
+	Abgabe: 27.05.2019\\
+	Blatt 6\\[-1em]\\
+	Pohl, Oliver \\	 577878\\  pohloliq\\[-1em]
+}
+
+\newcommand*{\QED}{\hfill\ensuremath{q.e.d.}}
+\newcommand{\ex}[1]{\newpage\subsubsection*{Aufgabe #1.}}
+\newcommand*{\simpleTable}[2]{
+	\begin{tabular}{@{} #1 @{}}
+		\toprule
+		#2
+		\bottomrule
+	\end{tabular}
+}
+\DeclareMathOperator{\sig}{sig}
+
+\newcommand\addvmargin[1]{
+  \node[fit=(current bounding box),inner ysep=#1,inner xsep=0]{};
+}
+
+\begin{document}
+	%%%%%%%%%%%%%%%%%%%% Aufgabe 14a %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\ex{14a}
+	
+	Berechnung des Pearson-Korrelationskoeffizienten:\\\\
+	
+	für $X_{n}$ = k=5 \\
+	
+	\={X} = $\frac{1}{5}$ $\cdot$ (1 + 2 + 3 + 4 + 5) = 3\\
+	\={Y} = $\frac{1}{5}$ $\cdot$ (1 + 2 + 3 + 4 + 5) = 3\\
+	
+	
+	\begin{align*}
+	S_{xy} 
+	&= \frac{1}{4} \cdot \sum_{i=1}^{5} (x_{i}-3) \cdot (y_{i}-3) \\
+	&= \frac{1}{4} \cdot( (1-3)\cdot (1-3) + (2-3)\cdot (2-3) \\
+	&+ (3-3)\cdot (3-3) + (4-3)\cdot (4-3) + (5-3)\cdot (5-3))\\
+	&=  \frac{1}{4} \cdot( 4 + 1 + 0 + 1 + 4  )	\\
+	&=  \frac{1}{4} \cdot 10 \\
+	&= \frac{10}{4}\\\\
+	\end{align*}
+	\begin{align*}
+	S_{x}^2 
+	&= \frac{1}{4} \cdot \sum_{i=1}^{5} (x_{i}-3) \cdot (x_{i}-3) \\
+	&= \frac{1}{4} \cdot( (1-3)\cdot (1-3) + (2-3)\cdot (2-3) \\
+	&+ (3-3)\cdot (3-3) + (4-3)\cdot (4-3) + (5-3)\cdot (5-3))\\
+	&=  \frac{1}{4} \cdot( 4 + 1 + 0 + 1 + 4  )	\\
+	&=  \frac{1}{4} \cdot 10 \\
+	&= \frac{10}{4}\\
+	S_{x} =\frac{\sqrt{10}}{2}\\\\
+	\end{align*}
+	\newpage
+	\begin{align*}
+	S_{y}^2 
+	&= \frac{1}{4} \cdot \sum_{i=1}^{5} (y_{i}-3) \cdot (y_{i}-3) \\
+	&= \frac{1}{4} \cdot( (1-3)\cdot (1-3) + (2-3)\cdot (2-3) \\
+	&+ (3-3)\cdot (3-3) + (4-3)\cdot (4-3) + (5-3)\cdot (5-3))\\
+	&=  \frac{1}{4} \cdot( 4 + 1 + 0 + 1 + 4  )	\\
+	&=  \frac{1}{4} \cdot 10 \\
+	&= \frac{10}{4}\\
+	S_{y} =\frac{\sqrt{10}}{2}\\
+	\end{align*}
+	
+	\begin{align*}
+	r_{xy} 
+	&= \frac{S_{xy}}{S_{x} \cdot S_{y}}\\
+	&= \frac{\frac{10}{4}}{\frac{\sqrt{10}}{2} \cdot \frac{\sqrt{10}}{2}}\\
+	&= \frac{\frac{10}{4}}{\frac{10}{4}}\\
+	&= 1\\
+	\end{align*}
+	
+	für $X_{n}$ = k=10 \\
+	\={X} = $\frac{1}{5}$ $\cdot$ (1 + 2 + 3 + 4 + 10) = 4\\
+	$\={Y}$ = $\frac{1}{5}$ $\cdot$ (1 + 2 + 3 + 4 + 5) = 3\\
+	\newpage	
+	\begin{align*}
+	S_{xy} 
+	&= \frac{1}{4} \cdot \sum_{i=1}^{5} (x_{i}-4) \cdot (y_{i}-3) \\
+	&= \frac{1}{4} \cdot( (1-4)\cdot (1-3) + (2-4)\cdot (2-3) \\
+	&+ (3-4) \cdot (3-3) + (4-4)\cdot (4-3) + (10-4)\cdot (5-3))\\
+	&=  \frac{1}{4} \cdot( 6 + 2 + 0 + 0 + 12  )	\\
+	&=  \frac{1}{4} \cdot 20 \\
+	&= \frac{20}{4}\\
+	&= 5\\
+	\end{align*}
+
+	\begin{align*}
+	S_{x}^2 
+	&= \frac{1}{4} \cdot \sum_{i=1}^{5} (x_{i}-3) \cdot (x_{i}-3) \\
+	&= \frac{1}{4} \cdot( (1-4)\cdot (1-4) + (2-4)\cdot (2-4)\\
+	& + (3-4)\cdot (3-4) + (4-4)\cdot (4-4) + (10-4)\cdot (10-4))\\
+	&=  \frac{1}{4} \cdot( 9 + 4 + 1 + 0 + 36  )	\\
+	&=  \frac{1}{4} \cdot 50 \\
+	&= \frac{50}{4}\\
+	S_{x} =\frac{\sqrt{50}}{2}\\
+	\end{align*}
+	\newpage
+	\begin{align*}
+	S_{y}^2 
+	&= \frac{1}{4} \cdot \sum_{i=1}^{5} (y_{i}-3) \cdot (y_{i}-3) \\
+	&= \frac{1}{4} \cdot( (1-3)\cdot (1-3) + (2-3)\cdot (2-3) \\
+	&+ (3-3)\cdot (3-3) + (4-3)\cdot (4-3) + (5-3)\cdot (5-3))\\
+	&=  \frac{1}{4} \cdot( 4 + 1 + 0 + 1 + 4  )	\\
+	&=  \frac{1}{4} \cdot 10 \\
+	&= \frac{10}{4}\\
+	S_{y} =\frac{\sqrt{10}}{2}\\
+	\end{align*}
+	
+	\begin{align*}
+	r_{xy} 
+	&= \frac{S_{xy}}{S_{x} \cdot S_{y}}\\
+	&= \frac{5}{\frac{\sqrt{50}}{2} \cdot \frac{\sqrt{10}}{2}}\\
+	&= 0.89\\
+	\end{align*}
+	\\\\
+	für $X_{n}$ = k=100 \\
+	\={X} = $\frac{1}{5}$ $\cdot$ (1 + 2 + 3 + 4 + 100) = 22\\
+	$\={Y}$ = $\frac{1}{5}$ $\cdot$ (1 + 2 + 3 + 4 + 5) = 3\\
+	\newpage	
+	\begin{align*}
+	S_{xy} 
+	&= \frac{1}{4} \cdot \sum_{i=1}^{5} (x_{i}-22) \cdot (y_{i}-3) \\
+	&= \frac{1}{4} \cdot( (1-22)\cdot (1-3) + (2-22)\cdot (2-3) \\
+	&+ (3-22) \cdot (3-3) + (4-22)\cdot (4-3) + (100-22)\cdot (5-3))\\
+	&=  \frac{1}{4} \cdot( 42 + 20 + 0 - 18 + 156  )	\\
+	&=  \frac{1}{4} \cdot 200 \\
+	&= \frac{200}{4}\\
+	&= 50\\
+	\end{align*}
+	
+	\begin{align*}
+	S_{x}^2 
+	&= \frac{1}{4} \cdot \sum_{i=1}^{5} (x_{i}-22) \cdot (x_{i}-22) \\
+	&= \frac{1}{4} \cdot( (1-22)\cdot (1-22) + (2-22)\cdot (2-22) \\
+	&+ (3-22)\cdot (3-22) + (4-22)\cdot (4-22) + (100-22)\cdot (100-22))\\
+	&=  \frac{1}{4} \cdot( 441 + 400 + 361 + 324 + 6084  )	\\
+	&=  \frac{1}{4} \cdot 7610 \\
+	S_{x} =43.62\\
+	\end{align*}
+	\newpage
+	\begin{align*}
+	S_{y}^2 
+	&= \frac{1}{4} \cdot \sum_{i=1}^{5} (y_{i}-3) \cdot (y_{i}-3) \\
+	&= \frac{1}{4} \cdot( (1-3)\cdot (1-3) + (2-3)\cdot (2-3) \\
+	&+ (3-3)\cdot (3-3) + (4-3)\cdot (4-3) + (5-3)\cdot (5-3))\\
+	&=  \frac{1}{4} \cdot( 4 + 1 + 0 + 1 + 4  )	\\
+	&=  \frac{1}{4} \cdot 10 \\
+	&= \frac{10}{4}\\
+	S_{y} =\frac{\sqrt{10}}{2}\\
+	\end{align*}
+	
+	\begin{align*}
+	r_{xy} 
+	&= \frac{S_{xy}}{S_{x} \cdot S_{y}}\\
+	&= \frac{59}{43.62 \cdot \frac{\sqrt{10}}{2}}\\
+	&= \frac{50}{69} \\
+	&= 0.72
+	\end{align*}
+	\\\\
+	\newpage
+	für $X_{n}$ = k=1000 \\
+	\={X} = $\frac{1}{5}$ $\cdot$ (1 + 2 + 3 + 4 + 1000) = 202\\
+	$\={Y}$ = $\frac{1}{5}$ $\cdot$ (1 + 2 + 3 + 4 + 5) = 3\\
+	
+	\begin{align*}
+	S_{xy} 
+	&= \frac{1}{4} \cdot \sum_{i=1}^{5} (x_{i}-202) \cdot (y_{i}-3) \\
+	&= \frac{1}{4} \cdot( (1-202)\cdot (1-3) + (2-202)\cdot (2-3) \\
+	&+ (3-202) \cdot (3-3) + (4-202)\cdot (4-3) + (1000-202)\cdot (5-3))\\
+	&=  \frac{1}{4} \cdot( 402 + 200 + 0 - 198 + 1596  )	\\
+	&=  \frac{1}{4} \cdot 200 \\
+	&= \frac{2000}{4}\\
+	&= 500\\
+	\end{align*}
+	
+	\begin{align*}
+	S_{x}^2 
+	&= \frac{1}{4} \cdot \sum_{i=1}^{5} (x_{i}-202) \cdot (x_{i}-202) \\
+	&= \frac{1}{4} \cdot( (1-202)\cdot (1-202) + (2-202)\cdot (2-202)\\
+	& + (3-202)\cdot (3-202) + (4-202)\cdot (4-202) + (1000-202)\cdot (1000-202))\\
+	&=  \frac{1}{4} \cdot( 40401 + 40000 + 39601 + 39204 + 636804  )	\\
+	&=  \frac{1}{4} \cdot 796010 \\
+	S_{x} = 446\\
+	\end{align*}
+	\newpage
+	\begin{align*}
+	S_{y}^2 
+	&= \frac{1}{4} \cdot \sum_{i=1}^{5} (y_{i}-3) \cdot (y_{i}-3) \\
+	&= \frac{1}{4} \cdot( (1-3)\cdot (1-3) + (2-3)\cdot (2-3) \\
+	&+ (3-3)\cdot (3-3) + (4-3)\cdot (4-3) + (5-3)\cdot (5-3))\\
+	&=  \frac{1}{4} \cdot( 4 + 1 + 0 + 1 + 4  )	\\
+	&=  \frac{1}{4} \cdot 10 \\
+	&= \frac{10}{4}\\
+	S_{y} =\frac{\sqrt{10}}{2}\\
+	\end{align*}
+	
+	\begin{align*}
+	r_{xy} 
+	&= \frac{S_{xy}}{S_{x} \cdot S_{y}}\\
+	&= \frac{500}{446 \cdot \frac{\sqrt{10}}{2}}\\
+	&= \frac{500}{705} \\
+	&= 0.709
+	\end{align*}
+	\\\\
+	
+	\newpage
+	
+	Berechnung des Spearman-Rangkorrelationskoeffizienten:\\\\
+	
+	für $X_{n}$ = k=5,10,100,1000 \\
+	
+	\begin{align*}
+	r_{s} 
+	&= 1 - \frac{6*\sum_{i=1}^{5}(R_{i}-S_{i})^2}{5 \cdot (5^2 - 1)} \\
+	&= 1 - \frac{6*\sum_{i=1}^{5}(R_{i}-S_{i})^2}{120} \\
+	&= 1 - \frac{6*((1-1)^2 + (2-2)^2 + (3-3)^2 + (4-4)^2 + (5-5)^2)}{120}	\\
+	&= 1 - \frac{6*(0)}{120}  \\
+	&= 1 - \frac{0}{120}\\
+	&= 1 - 0\\
+	&= 1\\
+	\end{align*}
+	
+	Berechnung des Kendall-Rangkorrelationskoeffizienten:\\\\
+	
+	für $X_{n}$ = k=5 \\
+	
+	\begin{align*}
+	\tau 
+	&= \frac{1}{\binom{5}{2}} \cdot \sum_{i<j}^{} a_{ij} \\
+	&= \frac{1}{\binom{5}{2}} \cdot sgn((1-2)*(1-2)) + sgn((1-3)*(1-3))\\
+	& +sgn((1-4)*(1-4)) +sgn((1-5)*(1-5)) +sgn((2-3)*(2-3)) \\
+	&+ sgn((2-4)*(2-4)) + sgn((2-5)*(2-5)) + sgn((3-4)*(3-4))\\
+	& + sgn((3-5)*(3-5)) + sgn((4-5)*(4-5))  \\
+	&= \frac{1}{\binom{5}{2}} \cdot 1 + 1 + 1 + 1 + 1 + 1 + 1 +	1 + 1 + 1 \\
+	&= \frac{1}{\binom{5}{2}} \cdot 10  \\
+	&= \frac{10}{10} \\
+	&= 1 
+	\end{align*}
+	
+	\newpage
+	
+	für $X_{n}$ = k=10 \\
+	
+	\begin{align*}
+	\tau 
+	&= \frac{1}{\binom{5}{2}} \cdot \sum_{i<j}^{} a_{ij} \\
+	&= \frac{1}{\binom{5}{2}} \cdot sgn((1-2)*(1-2)) \\
+	&+ sgn((1-3)*(1-3)) +sgn((1-4)*(1-4)) +sgn((1-10)*(1-5))\\
+	& +sgn((2-3)*(2-3)) + sgn((2-4)*(2-4)) + sgn((2-10)*(2-5)) \\
+	&+ sgn((3-4)*(3-4)) + sgn((3-10)*(3-5)) + sgn((4-10)*(4-5))  \\
+	&= \frac{1}{\binom{5}{2}} \cdot 1 + 1 + 1 + 1 + 1 + 1 + 1 +	1 + 1 + 1 \\
+	&= \frac{1}{\binom{5}{2}} \cdot 10  \\
+	&= \frac{10}{10} \\
+	&= 1 
+	\end{align*}
+	
+		für $X_{n}$ = k=100 \\
+	
+	\begin{align*}
+	\tau 
+	&= \frac{1}{\binom{5}{2}} \cdot \sum_{i<j}^{} a_{ij} \\
+	&= \frac{1}{\binom{5}{2}} \cdot sgn((1-2)*(1-2)) \\
+	&+ sgn((1-3)*(1-3)) +sgn((1-4)*(1-4)) +sgn((1-100)*(1-5)) \\
+	&+sgn((2-3)*(2-3)) + sgn((2-4)*(2-4)) + sgn((2-100)*(2-5)) \\
+	&+ sgn((3-4)*(3-4)) + sgn((3-100)*(3-5)) + sgn((4-100)*(4-5))  \\
+	&= \frac{1}{\binom{5}{2}} \cdot 1 + 1 + 1 + 1 + 1 + 1 + 1 +	1 + 1 + 1 \\
+	&= \frac{1}{\binom{5}{2}} \cdot 10  \\
+	&= \frac{10}{10} \\
+	&= 1 
+	\end{align*}
+	\newpage
+	
+	für $X_{n}$ = k=1000 \\
+	
+	\begin{align*}
+	\tau 
+	&= \frac{1}{\binom{5}{2}} \cdot \sum_{i<j}^{} a_{ij} \\
+	&= \frac{1}{\binom{5}{2}} \cdot sgn((1-2)*(1-2)) + sgn((1-3)*(1-3)) +sgn((1-4)*(1-4))\\  &+sgn((1-1000)*(1-5)) +sgn((2-3)*(2-3))\\
+	& + sgn((2-4)*(2-4)) + sgn((2-1000)*(2-5))\\
+	&+sgn((3-4)*(3-4)) + sgn((3-1000)*(3-5)) + sgn((4-1000)*(4-5))  \\
+	&= \frac{1}{\binom{5}{2}} \cdot 1 + 1 + 1 + 1 + 1 + 1 + 1 +	1 + 1 + 1 \\
+	&= \frac{1}{\binom{5}{2}} \cdot 10  \\
+	&= \frac{10}{10} \\
+	&= 1 
+	\end{align*}
+	
+	
+		%%%%%%%%%%%%%%%%%%%% Aufgabe 14a %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	\ex{14d}
+	
+	Grenzwert des Kendall-Korrelationskoeffizient:
+	
+		$\lim$ $\tau$ = \pm 1  \\
+		$-1 \leq \tau  \leq $1
+	
+	
+	
+	\end{document}
