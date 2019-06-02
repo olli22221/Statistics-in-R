@@ -162,7 +162,7 @@ t.test(banknote$oben[1:100]-banknote$unten[1:100])
 # gefaelschte banknoten
 
 t.test(banknote$oben[101:200]-banknote$unten[101:200])
-ttest(banknote$oben[101:200]-banknote$unten[101:200],mu=0,alpha = 0.05)
+
 # da t = 3.693 > tkrit = 1.970  , -t = -3.693 < -tkrit = -1.970 und p-Wert < 0.0003631 < 0.05 muss  die
 # Nullhyptothese (die besagt, dass die beiden verbundenen Stichproben gleiche Erwartungswerte haben) abgelehnt werden.
 
@@ -261,8 +261,7 @@ ttest <- function(x,mu,alpha){
 
 # d)
 
-ttest(med_A,mu=1,alpha = 0.05)
-t.test(med_B,mu=1)
+
 
 # Medikament A
 
@@ -294,4 +293,25 @@ right <- med_B_m + error
 
 left # untere Grenze des Konfidenzintervalls
 right # obere Grenze des Konfidenzintervalls
+
+
+
+# e)
+#Interpretation:
+
+# zu Medikament A:
+
+# Medikament hat ein Konfidenzintervall von -0.669016 bis 1.989016, was bedeutet, dass mit 95-prozentiger Wahrscheinlichkeit 
+# eine Stichprobe mit dem Umfang 10 einen mittleren Zugewinn an Schlafdauer in diesem Bereich hat. 
+# Da auch Mittelwerte im negativen Bereich möglich sind (siehe untere Grenze), würde ich dieses Medikament als nicht
+# sehr zuverlässig einschätzen.
+
+
+# zu Medikament B
+
+# Medikament B hat ein Konfidenzintervall von 0.8976775 bis 3.762322, was bedeutet, dass mit 95-prozentiger Wahrscheinlichkeit
+# eine Stichprobe mit dem Umfang 10 einen mittleren Zugewinn an Schlafdauer in diesem Bereich hat.
+# Da das Konfidenzintervall nur positive Werte hat , würde ich dieses Medikament als zuverlässig einschätzen.
+# Somit kann man auf Basis dieses statistischen Verfahren sagen, dass Medikament B sehr wohl Einfluss auf den Schlaf hat.
+# Außerdem ist Medikament B besser als Medikament A.
 
