@@ -1,0 +1,447 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows, fit}
+\usepackage{marginnote}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{amsmath, tabu}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\usepackage{mathtools}
+\geometry{
+	headsep=0.5cm,
+	headheight=2.5cm,
+	marginparwidth=2cm,
+	textheight=22cm,
+}
+\setlength{\headheight}{120pt}
+\usepackage{fancyhdr}
+\setlength\parindent{0pt}
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\arraystretch}{1.2}
+\allowdisplaybreaks
+\graphicspath{{../figures/}}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\lhead{
+	\textit{Humboldt-Universität zu Berlin, Institut der Informatik}\\
+	\bigskip
+	\textbf{\Large{Werkzeuge der empirischen Forschung}}\\
+	\bigskip
+	Abgabe: 01.07.2019\\
+	Blatt 11\\[-1em]\\
+	Pohl, Oliver \\	 577878\\  pohloliq\\[-1em]
+}
+
+\newcommand*{\QED}{\hfill\ensuremath{q.e.d.}}
+\newcommand{\ex}[1]{\newpage\subsubsection*{Aufgabe #1.}}
+\newcommand*{\simpleTable}[2]{
+	\begin{tabular}{@{} #1 @{}}
+		\toprule
+		#2
+		\bottomrule
+	\end{tabular}
+}
+\DeclareMathOperator{\sig}{sig}
+
+\newcommand\addvmargin[1]{
+  \node[fit=(current bounding box),inner ysep=#1,inner xsep=0]{};
+}
+
+\begin{document}
+	
+	
+
+
+	%%%%%%%%%%%%%%%%%%%% Aufgabe 31 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ex{31}
+
+$H_0$: Merkmale sind unabhängig \\♣
+$H_1$: $\neg$ $H_0$\\
+
+Beobachtete Werte:\\
+
+\begin{tabular}{ | l | l | l | p{5cm} |}
+	\hline
+	$n_0$ & ländlich & städtisch &   \\ \hline
+	Küstentiefland & 6 & 7 & 13\\ \hline
+	Inneres Hochland & 9 & 8 & 17 \\ \hline
+	 & 15 & 15 & 30\\ \hline
+
+\end{tabular}
+
+Erwartete Werte:\\
+
+\begin{tabular}{ | l | l | l | p{5cm} |}
+	\hline
+	$n_e$ & ländlich & städtisch &   \\ \hline
+	Küstentiefland & 6.5 & 6.5 & 13\\ \hline
+	Inneres Hochland & 8.5 & 8.5 & 17 \\ \hline
+	& 15 & 15 & 30\\ \hline
+	
+\end{tabular}
+
+
+Freiheitsgrade:  df=1 , Vergleichswert = 3.84\\
+Chiquadrat-Teststatistik berechnen:\\
+
+	\begin{align*}
+\chi^2 
+&= \frac{(6-6.5)^2}{6.5}+\frac{(7-6.5)^2}{6.5}+\frac{(9-8.5)^2}{8.5}+\frac{(8-8.5)^2}{8.5} \\
+&= 0.0384 + 0.0384 + 0.0294 + 0.0294\\
+&= 	0.1356\\
+\end{align*}
+
+Da 0.1356 $<$ 3.84 wird die Nullhypothese angenommen . Die beiden Merkmale sind unabhängig mit einer Irrtumswahrscheinlichkeit von 0.05.
+
+	
+	%%%%%%%%%%%%%%%%%%%% Aufgabe 32a %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ex{32a}
+
+
+Folgende fiktive Beobachtungen sind gegeben:\\\\
+
+\begin{tabular}{ | l | l | l | l | l | p{0.5cm} |}
+	\hline
+	$X:$ & 1 & 1 & 1 & 1 & 1 \\ \hline
+	$Y:$ & 1 & 1 & 1 & 1 & 2 \\ \hline
+\end{tabular}
+
+Vergleich anhand eines Wilcoxon-Tests:\\
+
+Zusammenfassen der Beobachtungen zu einer Stichprobe: \\
+
+$[1,1,1,1,1,1,1,1,1,2]$
+
+Rangzahlen bilden: \\
+
+$[5,5,5,5,5,5,5,5,5,10]$
+
+
+Berechnung der Summe der Ränge für Stichprobe X:
+\begin{align*}
+S_1 
+&= \sum_{j=1}^{5} R_{1j} \\
+&= \sum_{j=1}^{5} R_{1j} = 5+5+5+5+5 \\
+&= \sum_{j=1}^{5} R_{1j} = 25	\\
+\end{align*}
+
+Berechnung der Erwartungswerte(unter H0):
+
+\begin{align*}
+E(S_1)
+&= \frac{5\cdot(5+5+1)}{2} \\
+&= 27.5 \\
+\end{align*}
+
+
+Berechnung der Varianzen:
+
+\begin{align*}
+Var(S_1)
+&= \frac{5\cdot 5 \cdot (5+5+1)}{12} \\
+&=  22.91667 \\
+\end{align*}
+
+
+Berechnung der Teststatistik des Wilcoxon-Test:
+
+\begin{align*}
+Z
+&= \frac{S-E(S)}{\sqrt{varS}} \\
+&= \frac{25-27.5}{\sqrt{22.92}}  \\
+&=  -0.52 \\
+\end{align*}
+
+Berechnung des p-Wertes:
+
+\begin{align*}
+p
+&= 2 \cdot pnorm(-0.52) \\
+&= 2 \cdot 0.302  \\
+&= 0.604 \\
+\end{align*}
+
+Da der p-Wert = 0.604 $>$ 0.05 nehmen wir die Nullhypothese an.
+
+Folgende fiktive Beobachtungen sind gegeben:\\
+
+\begin{tabular}{ | l | l | l | l | l | p{0.5cm} |}
+	\hline
+	$X:$ & 1 & 1 & 1 & 1 & 1 \\ \hline
+	$Y:$ & 1 & 1 & 1 & 1 & 5 \\ \hline
+\end{tabular}
+
+Vergleich anhand eines Wilcoxon-Tests:\\
+
+Zusammenfassen der Beobachtungen zu einer Stichprobe: \\
+
+$[1,1,1,1,1,1,1,1,1,5]$
+
+Rangzahlen bilden: \\
+
+$[5,5,5,5,5,5,5,5,5,10]$
+
+
+Berechnung der Summe der Ränge für Stichprobe Y:
+\begin{align*}
+S_1 
+&= \sum_{j=1}^{5} R_{1j} \\
+&= \sum_{j=1}^{5} R_{1j} = 5+5+5+5+10 \\
+&= \sum_{j=1}^{5} R_{1j} = 30	\\
+\end{align*}
+
+Berechnung der Erwartungswerte(unter H0):
+
+\begin{align*}
+E(S_1)
+&= \frac{5\cdot(5+5+1)}{2} \\
+&= 27.5 \\
+\end{align*}
+
+
+Berechnung der Varianzen:
+
+\begin{align*}
+Var(S_1)
+&= \frac{5\cdot 5 \cdot (5+5+1)}{12} \\
+&=  22.91667 \\
+\end{align*}
+
+
+Berechnung der Teststatistik des Wilcoxon-Test:
+
+\begin{align*}
+Z
+&= \frac{S-E(S)}{\sqrt{varS}} \\
+&= \frac{30-27.5}{\sqrt{22.92}}  \\
+&=  0.52 \\
+\end{align*}
+
+Berechnung des p-Wertes:
+
+\begin{align*}
+p
+&= 2 \cdot pnorm(-0.52) \\
+&= 2 \cdot 0.302  \\
+&= 0.604 \\
+\end{align*}
+
+Da der p-Wert = 0.604 $>$ 0.05 nehmen wir die Nullhypothese an.
+
+\\\\
+Folgende fiktive Beobachtungen sind gegeben:\\
+
+\begin{tabular}{ | l | l | l | l | l | p{0.5cm} |}
+	\hline
+	$X:$ & 1 & 1 & 1 & 1 & 1 \\ \hline
+	$Y:$ & 1 & 1 & 1 & 1 & 10 \\ \hline
+\end{tabular}
+
+Vergleich anhand eines Wilcoxon-Tests:\\
+
+Zusammenfassen der Beobachtungen zu einer Stichprobe: \\
+
+$[1,1,1,1,1,1,1,1,1,5]$
+
+Rangzahlen bilden: \\
+
+$[5,5,5,5,5,5,5,5,5,10]$
+
+
+Berechnung der Summe der Ränge für Stichprobe Y:
+\begin{align*}
+S_1 
+&= \sum_{j=1}^{5} R_{1j} \\
+&= \sum_{j=1}^{5} R_{1j} = 5+5+5+5+10 \\
+&= \sum_{j=1}^{5} R_{1j} = 30	\\
+\end{align*}
+
+Berechnung der Erwartungswerte(unter H0):
+
+\begin{align*}
+E(S_1)
+&= \frac{5\cdot(5+5+1)}{2} \\
+&= 27.5 \\
+\end{align*}
+
+
+Berechnung der Varianzen:
+
+\begin{align*}
+Var(S_1)
+&= \frac{5\cdot 5 \cdot (5+5+1)}{12} \\
+&=  22.91667 \\
+\end{align*}
+
+
+Berechnung der Teststatistik des Wilcoxon-Test:
+
+\begin{align*}
+Z
+&= \frac{S-E(S)}{\sqrt{varS}} \\
+&= \frac{30-27.5}{\sqrt{22.92}}  \\
+&=  0.52 \\
+\end{align*}
+
+Berechnung des p-Wertes:
+
+\begin{align*}
+p
+&= 2 \cdot pnorm(-0.52) \\
+&= 2 \cdot 0.302  \\
+&= 0.604 \\
+\end{align*}
+
+Da der p-Wert = 0.604 $>$ 0.05 nehmen wir die Nullhypothese an.\\\\
+
+Interpretation der Ergebnisse:\\
+
+Egal wie groß der Ausreißer von der Stichprobe Y ist, der p-Wert ist immer derselbe.\\
+Man kann an diesem Beispiel die Robustheit des Wilcoxon-Test sehen.
+
+
+
+	%%%%%%%%%%%%%%%%%%%% Aufgabe 32b %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ex{32b}
+
+
+Folgende fiktive Beobachtungen sind gegeben:\\
+
+\begin{tabular}{ | l | l | l | p{0.5cm} |}
+	\hline
+	$X:$ & 1 & 2 & 3  \\ \hline
+	$Y:$ & 0 & 0 & 0  \\ \hline
+\end{tabular}
+
+Vergleich anhand eines Wilcoxon-Tests:\\
+
+Zusammenfassen der Beobachtungen zu einer Stichprobe: \\
+
+$[0,0,0,1,2,3]$
+
+Rangzahlen bilden: \\
+
+$[2,2,2,4,5,6]$
+
+
+Berechnung der Summe der Ränge für Stichprobe X:
+\begin{align*}
+S_1 
+&= \sum_{j=1}^{3} R_{1j} \\
+&= \sum_{j=1}^{3} R_{1j} = 4+5+6 \\
+&= \sum_{j=1}^{3} R_{1j} = 15	\\
+\end{align*}
+
+Berechnung der Erwartungswerte(unter H0):
+
+\begin{align*}
+E(S_1)
+&= \frac{3\cdot(3+3+1)}{2} \\
+&= 10.5 \\
+\end{align*}
+
+
+Berechnung der Varianzen:
+
+\begin{align*}
+Var(S_1)
+&= \frac{3\cdot 3 \cdot (3+3+1)}{12} \\
+&=  5.25 \\
+\end{align*}
+
+
+Berechnung der Teststatistik des Wilcoxon-Test:
+
+\begin{align*}
+Z
+&= \frac{S-E(S)}{\sqrt{varS}} \\
+&= \frac{15-10.5}{\sqrt{5.25}}  \\
+&= 1.97 \\
+\end{align*}
+
+Berechnung des p-Wertes:
+
+\begin{align*}
+p
+&= 2 \cdot pnorm(1.97) \\
+&= 2 \cdot  0.02 \\
+&= 0.04 \\
+\end{align*}
+
+Da der p-Wert = 0.04 $<$ 0.05 lehnen wir die Nullhypothese ab.\\\\
+
+
+Folgende fiktive Beobachtungen sind gegeben:\\
+
+\begin{tabular}{ | l | l | l | l | p{0.5cm} |}
+	\hline
+	$X:$ & 1 & 2 & 3 & 10 \\ \hline
+	$Y:$ & 0 & 0 & 0  \\ \hline
+\end{tabular}
+
+Vergleich anhand eines Wilcoxon-Tests:\\
+
+Zusammenfassen der Beobachtungen zu einer Stichprobe: \\
+
+$[0,0,0,1,2,3,10]$
+
+Rangzahlen bilden: \\
+
+$[2,2,2,4,5,6,7]$
+
+
+Berechnung der Summe der Ränge für Stichprobe Y:
+\begin{align*}
+S_1 
+&= \sum_{j=1}^{3} R_{1j} \\
+&= \sum_{j=1}^{3} R_{1j} = 2+2+2 \\
+&= \sum_{j=1}^{3} R_{1j} = 6	\\
+\end{align*}
+
+Berechnung der Erwartungswerte(unter H0):
+
+\begin{align*}
+E(S_1)
+&= \frac{3\cdot(3+4+1)}{2} \\
+&= 12 \\
+\end{align*}
+
+
+Berechnung der Varianzen:
+
+\begin{align*}
+Var(S_1)
+&= \frac{3\cdot 4 \cdot (3+4+1)}{12} \\
+&=  8 \\
+\end{align*}
+
+
+Berechnung der Teststatistik des Wilcoxon-Test:
+
+\begin{align*}
+Z
+&= \frac{S-E(S)}{\sqrt{varS}} \\
+&= \frac{6-12}{\sqrt{8}}  \\
+&= -2.12 \\
+\end{align*}
+
+Berechnung des p-Wertes:
+
+\begin{align*}
+p
+&= 2 \cdot pnorm(-2.12) \\
+&= 2 \cdot 0.017  \\
+&= 0.034 \\
+\end{align*}
+
+Da der p-Wert = 0.034 $<$ 0.05 lehnen wir die Nullhypothese ab.\\\\
+
+
+\end{document}

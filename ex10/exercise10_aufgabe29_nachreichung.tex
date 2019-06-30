@@ -1,0 +1,154 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{automata, arrows, fit}
+\usepackage{marginnote}
+\usepackage{lipsum}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{amsmath, tabu}
+\usepackage{amsfonts}
+\usepackage{geometry}
+\usepackage{mathtools}
+\geometry{
+	headsep=0.5cm,
+	headheight=2.5cm,
+	marginparwidth=2cm,
+	textheight=22cm,
+}
+\setlength{\headheight}{120pt}
+\usepackage{fancyhdr}
+\setlength\parindent{0pt}
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\arraystretch}{1.2}
+\allowdisplaybreaks
+\graphicspath{{../figures/}}
+
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\lhead{
+	\textit{Humboldt-Universität zu Berlin, Institut der Informatik}\\
+	\bigskip
+	\textbf{\Large{Werkzeuge der empirischen Forschung}}\\
+	\bigskip
+	Abgabe: 24.06.2019\\
+	Blatt 10\\[-1em]\\
+	Pohl, Oliver \\	 577878\\  pohloliq\\[-1em]
+}
+
+\newcommand*{\QED}{\hfill\ensuremath{q.e.d.}}
+\newcommand{\ex}[1]{\newpage\subsubsection*{Aufgabe #1.}}
+\newcommand*{\simpleTable}[2]{
+	\begin{tabular}{@{} #1 @{}}
+		\toprule
+		#2
+		\bottomrule
+	\end{tabular}
+}
+\DeclareMathOperator{\sig}{sig}
+
+\newcommand\addvmargin[1]{
+  \node[fit=(current bounding box),inner ysep=#1,inner xsep=0]{};
+}
+
+\begin{document}
+	
+	
+
+
+	%%%%%%%%%%%%%%%%%%%% Aufgabe 29 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ex{29}
+
+Daten:\\
+
+\begin{tabular}{ | l | l | l | p{5cm} |}
+	\hline
+	Gruppe & FC & Rang  \\ \hline
+	w & 23.01 & 1 \\ \hline
+	w & 38.98 & 13  \\ \hline
+	w & 29.65 & 8 \\ \hline
+	w & 25.69 & 4 \\ \hline
+	w & 37.17 & 10  \\ \hline
+	w & 25.56 & 3 \\ \hline
+	w & 29.37 & 7 \\ \hline
+	w & 28.31 & 6  \\ \hline
+	w & 33.60 & 9 \\ \hline
+	w & 40.32 & 16 \\ \hline
+	m & 43.41 & 18  \\ \hline
+	m & 37.39 & 11 \\ \hline
+	m & 65.11 & 21 \\ \hline
+	m & 39.26 & 14  \\ \hline
+	m & 48.79 & 20 \\ \hline
+	m & 26.63 & 5 \\ \hline
+	m & 43.76 & 19  \\ \hline
+	m & 38.73 & 12 \\ \hline
+	m & 41.94 & 17 \\ \hline
+	m & 39.67 & 15  \\ \hline
+	m & 23.85 & 2 \\ \hline
+\end{tabular}
+\\\\
+Berechnung der Summe der Ränge für Stichprobe Gruppe "w":
+\begin{align*}
+S_1 
+&= \sum_{j=1}^{10} R_{1j} \\
+&= \sum_{j=1}^{10} R_{1j} = 1+13+8+4+10+3+7+6+9+16 \\
+&= \sum_{j=1}^{10} R_{1j} = 77	\\
+\end{align*}
+
+Berechnung der Summe der Ränge für Stichprobe Gruppe "m":
+\begin{align*}
+S_2 
+&= \sum_{j=1}^{11} R_{1j} \\
+&= \sum_{j=1}^{11} R_{1j} = 18+11+21+14+20+5+19+12+17+15+2 \\
+&= \sum_{j=1}^{11} R_{1j} = 154	\\
+\end{align*}
+
+Berechnung der Erwartungswerte(unter H0):
+
+\begin{align*}
+E(S_1)
+&= \frac{10\cdot(10+11+1)}{2} \\
+&=  110\\
+\end{align*}
+
+\begin{align*}
+E(S_2)
+&= \frac{11\cdot(11+10+1)}{2} \\
+&=  121\\
+\end{align*}
+
+Berechnung der Varianzen:
+
+\begin{align*}
+Var(S_1)
+&= \frac{10\cdot 11 \cdot (10+11+1)}{12} \\
+&=  201.66 \\
+\end{align*}
+
+
+Berechnung der Teststatistik des Wilcoxon-Test:
+
+\begin{align*}
+Z
+&= \frac{S-E(S)}{\sqrt{varS}} \\
+&= \frac{77-110}{\sqrt{201.66}}  \\
+&=  -2.32 \\
+\end{align*}
+
+Berechnung des p-Wertes:
+
+\begin{align*}
+p
+&= 2 \cdot pnorm(-2.32) \\
+&= 2 \cdot 0.0102  \\
+&= 0.0204 \\
+\end{align*}
+
+Da der p-Wert = 0.0204 $<$ 0.05 lehnen wir die Nullhypothese ab.
+
+	
+	
+\end{document}
